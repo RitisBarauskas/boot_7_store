@@ -1,0 +1,9 @@
+{% extends 'goods/extends/base.html' %}
+
+{% block title %}{{ good.title }}{% endblock %}
+{% block header %}{{ good.title }}{% endblock %}
+
+{% block content %}
+    {% include 'goods/includes/good.html' %}
+    <a href="{% url 'goods:index' %}">На главную</a>
+{% endblock %}

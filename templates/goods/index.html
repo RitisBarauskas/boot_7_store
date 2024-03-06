@@ -1,0 +1,8 @@
+{% extends 'goods/extends/base.html' %}
+
+{% block content %}
+    {% for good in goods %}
+        {% include 'goods/includes/good.html' %}
+        <a href="{% url 'goods:detail' good.id %}">Подробнее</a>
+    {% endfor %}
+{% endblock %}
