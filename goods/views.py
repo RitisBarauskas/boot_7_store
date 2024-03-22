@@ -1,16 +1,28 @@
-from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from .constants import GOODS
+from .models import Author, Good, Category
 
 
 def index(request):
-    return render(request, 'goods/index.html', {'goods': GOODS})
+    goods = Good.objects.all()
+    return render(request, 'goods/index.html', {'goods': goods})
 
 
-def detail(request, id):
-    good = next((good for good in GOODS if good['id'] == id), None)
-    if not good:
-        raise Http404()
+def good_detail(request, id):
+    good = get_object_or_404(Good, pk=id)
 
     return render(request, 'goods/detail.html', {'good': good})
+
+
+def goods_of_category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    goods = category.goods.all()
+
+    return render(request, 'goods/index.html', {'goods': goods})
+
+
+def goods_of_author(request, id):
+    author = get_object_or_404(Author, pk=id)
+    goods = author.goods.all()
+
+    return render(request, 'goods/index.html', {'goods': goods})

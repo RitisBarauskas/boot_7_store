@@ -1,5 +1,8 @@
 <article>
     <h2>{{ good.title }}</h2>
-    <p>Автор: {{ good.author }}</p>
-    <p>Категория: {{ good.category }}</p>
+    <p>Автор: <a href="{% url 'goods:author' good.author.id %}">{{ good.author.name }}</a></p>
+    <p>Категории:
+        {% for category in good.categories.all %}
+            <a href="{% url 'goods:category' category.slug %}">{{ category.title }}</a>
+        {% endfor %}
 </article>
