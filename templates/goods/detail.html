@@ -4,6 +4,8 @@
 {% block header %}{{ good.title }}{% endblock %}
 
 {% block content %}
-    {% include 'goods/includes/good.html' %}
-    <a href="{% url 'goods:index' %}">На главную</a>
+    <div class="container">
+        {% include 'goods/includes/good.html' %}
+        <a href="{% url 'goods:index' %}">На главную</a>
+    </div>
 {% endblock %}

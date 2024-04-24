@@ -1,0 +1,24 @@
+<header>
+    <nav class="d-flex justify-content-between">
+        <ul class="list-group list-group-horizontal-sm">
+            <li class="list-group-item"><a href="{% url 'goods:index' %}">Главная</a></li>
+            <li class="list-group-item"><a href="{% url 'goods:author_create' %}">Создать автора</a></li>
+            <li class="list-group-item"><a href="{% url 'goods:category_create' %}">Создать категорию</a></li>
+            <li class="list-group-item"><a href="{% url 'goods:good_create' %}">Добавить товар</a></li>
+        </ul>
+        <ul class="list-group list-group-horizontal-sm">
+        {% if user.is_authenticated %}
+            <li class="list-group-item">Привет, <a href="">{{ user.first_name }}</a></li>
+            <li class="list-group-item">
+                <form action="{% url 'users:logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit">Выйти</button>
+                </form>
+            </li>
+        {% else %}
+            <li class="list-group-item"><a href="{% url 'users:login' %}">Войти</a></li>
+            <li class="list-group-item"><a href="">Зарегистрироваться</a></li>
+        {% endif %}
+        </ul>
+    </nav>
+</header>

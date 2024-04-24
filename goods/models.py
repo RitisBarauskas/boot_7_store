@@ -42,6 +42,7 @@ class Good(models.Model):
     )
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField('Дата обновления', auto_now=True)
+    creator = models.ForeignKey('users.User', on_delete=models.CASCADE, verbose_name='Создатель', related_name='goods')
 
     class Meta:
         verbose_name = 'Товар'

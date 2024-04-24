@@ -34,14 +34,18 @@ class GoodFactory(DjangoModelFactory):
     product_type = None
 
     @classmethod
-    def _create(cls, model_class, *args, categories=None, author=None, **kwargs):
+    def _create(cls, model_class, *args, categories=None, author=None, creator=None, **kwargs):
         if not kwargs.get('product_type'):
             kwargs['product_type'] = random.choice(ProductTypeEnum.choices())[0]
 
         if author is None:
             raise ValueError('Author must be specified')
 
+        if creator is None:
+            raise ValueError('Creator must be specified')
+
         kwargs['author'] = author
+        kwargs['creator'] = creator
 
         if categories is None:
             raise ValueError('Categories must be specified')
